@@ -3,5 +3,7 @@
     "^.+\\.(j|t)sx?$": "ts-jest"
   },
   "testRegex": "(/__test__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "modulePathIgnorePatterns": ["__mocks__"],
+  "collectCoverage": true
 }

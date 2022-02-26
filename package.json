@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/pakut2/ztm#readme",
   "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.7",
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
     "prettier": "^2.5.1",
@@ -41,5 +42,8 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "dependencies": {
+    "axios": "^0.26.0"
+  }
 }
