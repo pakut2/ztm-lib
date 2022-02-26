@@ -1,5 +1,5 @@
 {
-  "name": "ztm-sdk",
+  "name": "ztm",
   "version": "1.0.0",
   "description": "Unofficial sdk for ZTM Gdańsk",
   "main": "lib/index.js",
