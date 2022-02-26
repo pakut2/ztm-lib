@@ -1,1 +1,1 @@
-### Unofficial sdk for ZTM Gdańsk
+### Unofficial SDK for ZTM Gdańsk
