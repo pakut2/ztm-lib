@@ -16,9 +16,4 @@ export interface Stop {
   activationDate: Date;
   stopLat: number;
   stopLon: number;
-  stopUrl: string;
-  locationType?: string;
-  parentStation?: string;
-  stopTimezone: string;
-  wheelchairBoarding?: number | boolean;
 }
