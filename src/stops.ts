@@ -3,7 +3,7 @@ import { Stop, Vehicle } from './models';
 import { partialMatch } from './utils';
 
 /**
- * Fetch all stops that meet given criteria
+ * Fetch all stops
  *
  * @param where Optional object containing properties to query by
  *
@@ -21,7 +21,7 @@ export const stops = async (where?: Partial<Stop>): Promise<Array<Stop>> => {
 };
 
 /**
- * Fetch all vehicles, that meet given criteria, for the stop
+ * Fetch all vehicles for the stop
  *
  * @param stopId
  * @param where Optional object containing properties to query by
@@ -45,7 +45,7 @@ interface KeyedVehicles {
 }
 
 /**
- * Fetch all vehicles, that meet given criteria, for multiple stops
+ * Fetch all vehicles for multiple stops
  *
  * @param stopIds
  * @param where Optional object containing properties to query by
