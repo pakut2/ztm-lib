@@ -15,6 +15,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Lint and prettier format
+        run: npm run lint && npm run format
+
       - name: Build project
         run: npm run build
 
