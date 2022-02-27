@@ -3,7 +3,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  format:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,8 +15,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Prettier
+      - name: Prettier check
         run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
 
         env:
           CI: true
