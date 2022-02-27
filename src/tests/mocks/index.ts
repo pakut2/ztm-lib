@@ -6,8 +6,8 @@ export const mockStop = (input: Partial<Models.Stop>): Partial<Models.Stop> => {
     stopId: faker.datatype.number({ min: 1000, max: 9999 }),
     stopName: faker.random.word(),
     stopDesc: faker.random.word(),
-    stopLon: faker.datatype.float({ min: 1, max: 100 }),
-    stopLat: faker.datatype.float({ min: 1, max: 100 }),
+    stopLon: faker.datatype.float({ min: 1, max: 90 }),
+    stopLat: faker.datatype.float({ min: 1, max: 90 }),
   };
 
   return Object.assign(defaultStop, input);
