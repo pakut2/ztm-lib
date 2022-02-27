@@ -14,11 +14,5 @@ export const mockStop = (input: Partial<Models.Stop>): Partial<Models.Stop> => {
 };
 
 export const mockStops = (input: Array<Partial<Models.Stop>>): Array<Partial<Models.Stop>> => {
-  const stops: Array<Partial<Models.Stop>> = [];
-
-  input.forEach((stop) => {
-    stops.push(mockStop(stop));
-  });
-
-  return stops;
+  return input.map((stop) => mockStop(stop));
 };
