@@ -15,7 +15,7 @@ describe('Ztm', () => {
       const mockedStop = mockStop({});
       jest.spyOn(axios, 'get').mockResolvedValue({ data: { stops: [mockedStop] } });
 
-      const stops = await ztm.stops({});
+      const stops = await ztm.stops();
 
       expect(stops).toMatchObject([mockedStop]);
     });
