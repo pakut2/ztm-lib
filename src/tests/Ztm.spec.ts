@@ -1,7 +1,7 @@
 import faker from '@faker-js/faker';
 import axios from 'axios';
 import { Ztm } from '../index';
-import { mockStop, mockStops } from './mocks';
+import { mockStops } from './mocks';
 
 describe('Ztm', () => {
   const ztm = new Ztm();
@@ -12,12 +12,12 @@ describe('Ztm', () => {
 
   describe('stops', () => {
     it('should return all stops when no params are provided', async () => {
-      const mockedStop = mockStop({});
-      jest.spyOn(axios, 'get').mockResolvedValue({ data: { stops: [mockedStop] } });
+      const mockedStops = mockStops([{}, {}]);
+      jest.spyOn(axios, 'get').mockResolvedValue({ data: { stops: mockedStops } });
 
       const stops = await ztm.stops();
 
-      expect(stops).toMatchObject([mockedStop]);
+      expect(stops).toMatchObject(mockedStops);
     });
 
     it('should return only the stops specified by params', async () => {
