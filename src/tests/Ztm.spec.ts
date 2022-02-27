@@ -11,7 +11,7 @@ describe('Ztm', () => {
   });
 
   describe('stops', () => {
-    it('should return an array of stops with no params provided', async () => {
+    it('should return all stops with no params provided', async () => {
       const mockedStop = mockStop({});
       jest.spyOn(axios, 'get').mockResolvedValue({ data: { stops: [mockedStop] } });
 
