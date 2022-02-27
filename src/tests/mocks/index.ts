@@ -1,7 +1,7 @@
 import faker from '@faker-js/faker';
-import * as Models from '../../models/models.interface';
+import { Stop } from '../../models';
 
-const mockStop = (input: Partial<Models.Stop>): Partial<Models.Stop> => {
+const mockStop = (input: Partial<Stop>): Partial<Stop> => {
   const defaultStop = {
     stopId: faker.datatype.number({ min: 1000, max: 9999 }),
     stopName: faker.random.word(),
@@ -13,6 +13,6 @@ const mockStop = (input: Partial<Models.Stop>): Partial<Models.Stop> => {
   return Object.assign(defaultStop, input);
 };
 
-export const mockStops = (input: Array<Partial<Models.Stop>>): Array<Partial<Models.Stop>> => {
+export const mockStops = (input: Array<Partial<Stop>>): Array<Partial<Stop>> => {
   return input.map((stop) => mockStop(stop));
 };

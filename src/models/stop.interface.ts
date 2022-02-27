@@ -8,12 +8,14 @@ export interface Stop {
   date: Date;
   zoneId: number;
   zoneName: string;
-  virtual: number | boolean;
-  nonpassenger: number | boolean;
-  depot: number | boolean;
-  ticketZoneBorder: number | boolean;
-  onDemand: number | boolean;
+  virtual: Bool;
+  nonpassenger: Bool;
+  depot: Bool;
+  ticketZoneBorder: Bool;
+  onDemand: Bool;
   activationDate: Date;
   stopLat: number;
   stopLon: number;
 }
+
+type Bool = 1 | 0;

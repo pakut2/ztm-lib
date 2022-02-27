@@ -1,6 +1,6 @@
 import axios from 'axios';
-import * as Models from './models/models.interface';
-import { Constants } from './constants/contants.enum';
+import { Stop } from './models';
+import { partialMatch } from './utils';
 
 /**
  * Fetch all stops that meet given criteria
@@ -9,27 +9,13 @@ import { Constants } from './constants/contants.enum';
  *
  * @returns Array of stops
  */
-export const stops = async (where?: Partial<Models.Stop>): Promise<Array<Models.Stop>> => {
+export const stops = async (where?: Partial<Stop>): Promise<Array<Stop>> => {
   const { data } = await axios.get(
-    `${Constants.BASE_URL}dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/d3e96eb6-25ad-4d6c-8651-b1eb39155945/download/stopsingdansk.json`,
+    `https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/d3e96eb6-25ad-4d6c-8651-b1eb39155945/download/stopsingdansk.json`,
   );
 
-  const stopsRes: Array<Models.Stop> = data.stops;
-  let matchedStops: Array<Models.Stop> = [];
+  const stopsRes: Array<Stop> = data.stops;
+  const matchedStops = where && partialMatch(stopsRes, where);
 
-  if (where) {
-    matchedStops = stopsRes.filter((stop) => {
-      let match;
-
-      for (const [key, value] of Object.entries(where)) {
-        match = stop[key as keyof Models.Stop] === value;
-
-        if (!match) break;
-      }
-
-      return match;
-    });
-  }
-
-  return matchedStops.length ? matchedStops : stopsRes;
+  return matchedStops ? matchedStops : stopsRes;
 };
