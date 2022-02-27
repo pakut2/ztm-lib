@@ -19,18 +19,13 @@ export class Ztm {
     let matchedStops: Array<Models.Stop> = [];
 
     if (!Ztm.isEmpty(where)) {
-      const keys = Object.keys(where);
-      const values = Object.values(where);
-
       matchedStops = stops.filter((stop) => {
         let match;
 
-        for (let i = 0; i < keys.length; i++) {
-          match = stop[keys[i] as keyof Models.Stop] === values[i];
+        for (const [key, value] of Object.entries(where)) {
+          match = stop[key as keyof Models.Stop] === value;
 
-          if (!match) {
-            break;
-          }
+          if (!match) break;
         }
 
         return match;

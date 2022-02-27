@@ -2,8 +2,8 @@
   "transform": {
     "^.+\\.(j|t)sx?$": "ts-jest"
   },
-  "testRegex": "(/__test__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+  "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.(js|ts)$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-  "modulePathIgnorePatterns": ["__mocks__"],
+  "modulePathIgnorePatterns": ["mocks"],
   "collectCoverage": true
 }
