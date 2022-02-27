@@ -17,13 +17,13 @@ describe('stops', () => {
     expect(result).toMatchObject(mockedStops);
   });
 
-  // it('should return only the stops specified by params', async () => {
-  //   const input = { stopDesc: faker.random.word(), stopCode: '01' };
-  //   const mockedStops = mockStops([input, { stopDesc: input.stopDesc, stopCode: '02' }, {}]);
-  //   jest.spyOn(axios, 'get').mockResolvedValue({ data: { stops: mockedStops } });
+  it('should return only the stops specified by params', async () => {
+    const input = { stopDesc: faker.random.word(), stopCode: '01' };
+    const mockedStops = mockStops([input, { stopDesc: input.stopDesc, stopCode: '02' }, {}]);
+    jest.spyOn(axios, 'get').mockResolvedValue({ data: { stops: mockedStops } });
 
-  //   const result = await stops(input);
+    const result = await stops(input);
 
-  //   expect(result).toMatchObject([mockedStops[0]]);
-  // });
+    expect(result).toMatchObject([mockedStops[0]]);
+  });
 });
