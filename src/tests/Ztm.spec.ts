@@ -20,14 +20,14 @@ describe('Ztm', () => {
       expect(stops).toMatchObject(mockedStops);
     });
 
-    it('should return only the stops specified by params', async () => {
-      const input = { stopDesc: faker.random.word(), stopCode: '01' };
-      const mockedStops = mockStops([input, { stopDesc: input.stopDesc, stopCode: '02' }, {}]);
-      jest.spyOn(axios, 'get').mockResolvedValue({ data: { stops: mockedStops } });
+    // it('should return only the stops specified by params', async () => {
+    //   const input = { stopDesc: faker.random.word(), stopCode: '01' };
+    //   const mockedStops = mockStops([input, { stopDesc: input.stopDesc, stopCode: '02' }, {}]);
+    //   jest.spyOn(axios, 'get').mockResolvedValue({ data: { stops: mockedStops } });
 
-      const stops = await ztm.stops(input);
+    //   const stops = await ztm.stops(input);
 
-      expect(stops).toMatchObject([mockedStops[0]]);
-    });
+    //   expect(stops).toMatchObject([mockedStops[0]]);
+    // });
   });
 });
