@@ -9,12 +9,12 @@ import { partialMatch } from './utils';
  *
  * @returns Array of stops
  */
-export const stops = async (where?: Partial<Stop>): Promise<Array<Stop>> => {
+export const stops = async (where?: Partial<Stop>): Promise<Stop[]> => {
   const { data } = await axios.get(
     `https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/d3e96eb6-25ad-4d6c-8651-b1eb39155945/download/stopsingdansk.json`,
   );
 
-  const stopsRes: Array<Stop> = data.stops;
+  const stopsRes: Stop[] = data.stops;
   const matchedStops = where && Object.keys(where).length && partialMatch(stopsRes, where);
 
   return matchedStops ? matchedStops : stopsRes;
@@ -31,17 +31,17 @@ export const stops = async (where?: Partial<Stop>): Promise<Array<Stop>> => {
 export const vehiclesForStop = async (
   stopId: number,
   where?: Partial<Vehicle>,
-): Promise<Array<Vehicle>> => {
+): Promise<Vehicle[]> => {
   const { data } = await axios.get(`https://ckan2.multimediagdansk.pl/departures?stopId=${stopId}`);
 
-  const vehicles: Array<Vehicle> = data.departures;
+  const vehicles: Vehicle[] = data.departures;
   const matchedVehicles = where && Object.keys(where).length && partialMatch(vehicles, where);
 
   return matchedVehicles ? matchedVehicles : vehicles;
 };
 
 interface KeyedVehicles {
-  [stopId: number]: Array<Vehicle>;
+  [stopId: number]: Vehicle[];
 }
 
 /**
@@ -53,9 +53,9 @@ interface KeyedVehicles {
  * @returns An array of vehicles keyed by id of the corresponding stop
  */
 export const vehiclesForStops = async (
-  stopIds: Array<number>,
+  stopIds: number[],
   where?: Partial<Vehicle>,
-): Promise<Array<KeyedVehicles>> => {
+): Promise<KeyedVehicles[]> => {
   const vehicles = await Promise.all(stopIds.map((id) => vehiclesForStop(id, where)));
 
   return vehicles.map((vehicle, i) => {

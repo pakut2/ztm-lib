@@ -1,4 +1,4 @@
-export const partialMatch = <T>(input: Array<T>, obj: Partial<T>): Array<T> => {
+export const partialMatch = <T>(input: T[], obj: Partial<T>): T[] => {
   return input.filter((el) => {
     let match;
 

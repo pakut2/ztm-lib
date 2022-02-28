@@ -11,6 +11,6 @@ const mockVehicle = (input: Partial<Vehicle>): Partial<Vehicle> => {
   return Object.assign(defaultVehicle, input);
 };
 
-export const mockVehicles = (input: Array<Partial<Vehicle>>): Array<Partial<Vehicle>> => {
+export const mockVehicles = (input: Partial<Vehicle>[]): Partial<Vehicle>[] => {
   return input.map((vehicle) => mockVehicle(vehicle));
 };

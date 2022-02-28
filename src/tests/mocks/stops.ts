@@ -13,6 +13,6 @@ const mockStop = (input: Partial<Stop>): Partial<Stop> => {
   return Object.assign(defaultStop, input);
 };
 
-export const mockStops = (input: Array<Partial<Stop>>): Array<Partial<Stop>> => {
+export const mockStops = (input: Partial<Stop>[]): Partial<Stop>[] => {
   return input.map((stop) => mockStop(stop));
 };
