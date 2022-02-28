@@ -14,10 +14,10 @@ export const stops = async (where?: Partial<Stop>): Promise<Stop[]> => {
     `https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/d3e96eb6-25ad-4d6c-8651-b1eb39155945/download/stopsingdansk.json`,
   );
 
-  const stopsRes: Stop[] = data.stops;
-  const matchedStops = where && Object.keys(where).length && partialMatch(stopsRes, where);
+  const allStops: Stop[] = data.stops;
+  const matchedStops = where && Object.keys(where).length ? partialMatch(allStops, where) : null;
 
-  return matchedStops ? matchedStops : stopsRes;
+  return matchedStops ?? allStops;
 };
 
 /**
@@ -35,9 +35,9 @@ export const vehiclesForStop = async (
   const { data } = await axios.get(`https://ckan2.multimediagdansk.pl/departures?stopId=${stopId}`);
 
   const vehicles: Vehicle[] = data.departures;
-  const matchedVehicles = where && Object.keys(where).length && partialMatch(vehicles, where);
+  const matchedVehicles = where && Object.keys(where).length ? partialMatch(vehicles, where) : null;
 
-  return matchedVehicles ? matchedVehicles : vehicles;
+  return matchedVehicles ?? vehicles;
 };
 
 interface KeyedVehicles {
