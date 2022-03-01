@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Stop, Vehicle } from './models';
-import { partialMatch } from './utils';
+import { calcDist, partialMatch } from './utils';
 
 /**
  * Fetch all stops
@@ -18,6 +18,41 @@ export const stops = async (where?: Partial<Stop>): Promise<Stop[]> => {
   const matchedStops = where && Object.keys(where).length ? partialMatch(allStops, where) : null;
 
   return matchedStops ?? allStops;
+};
+
+interface StopWithDistance extends Stop {
+  distance: number;
+}
+
+/**
+ * Fetch all stops in specified radius
+ *
+ * @param latitude Starting point latitude
+ * @param longitude Starting point longitude
+ * @param distance Search radius (in meters). Default: 500m
+ * @param where Optional object containing properties to query by
+ *
+ * @returns Array of stops with distance from starting point. Sorted desc. based on distance
+ */
+export const nearStops = async (
+  latitude: number,
+  longitude: number,
+  distance = 500,
+  where?: Partial<Stop>,
+): Promise<StopWithDistance[]> => {
+  const allStops = await stops(where);
+
+  const stopsInVicinity = allStops
+    .map((stop) =>
+      Object.assign(stop, {
+        distance: Math.round(calcDist(latitude, longitude, stop.stopLat, stop.stopLon)),
+      }),
+    )
+    .filter((stop) => distance >= stop.distance);
+
+  return stopsInVicinity.sort((stop1, stop2) => {
+    return stop1.distance - stop2.distance;
+  });
 };
 
 /**
