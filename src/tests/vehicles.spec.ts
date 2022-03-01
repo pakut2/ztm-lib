@@ -4,6 +4,10 @@ import { vehiclesForStop, vehiclesForStops } from '../index';
 import { mockVehicles } from './mocks';
 
 describe('vehicles', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('vehiclesForStop', () => {
     it('should return all vehicles when no params are provided', async () => {
       const mockedVehicles = mockVehicles([{}, {}]);
@@ -32,12 +36,10 @@ describe('vehicles', () => {
   });
 
   describe('vehiclesForStops', () => {
-    jest.mock('axios');
-    const mockedAxios = axios as jest.Mocked<typeof axios>;
-
     it('should return all vehicles for all stops when no params are provided', async () => {
       const mockedVehicles = mockVehicles([{}, {}]);
-      mockedAxios.get
+      jest
+        .spyOn(axios, 'get')
         .mockImplementationOnce(() => Promise.resolve({ data: { departures: mockedVehicles } }))
         .mockImplementationOnce(() => Promise.resolve({ data: { departures: mockedVehicles } }));
 
@@ -53,7 +55,8 @@ describe('vehicles', () => {
         { headsign: faker.random.word() },
         {},
       ]);
-      mockedAxios.get
+      jest
+        .spyOn(axios, 'get')
         .mockImplementationOnce(() => Promise.resolve({ data: { departures: mockedVehicles } }))
         .mockImplementationOnce(() => Promise.resolve({ data: { departures: mockedVehicles } }));
 

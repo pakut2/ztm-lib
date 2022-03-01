@@ -29,23 +29,23 @@ interface StopWithDistance extends Stop {
  *
  * @param latitude Starting point latitude
  * @param longitude Starting point longitude
- * @param distance Search radius (in meters). Default: 500m
  * @param where Optional object containing properties to query by
+ * @param distance Search radius (in meters). Default: 500m
  *
  * @returns Array of stops with distance from starting point. Sorted desc. based on distance
  */
 export const nearStops = async (
   latitude: number,
   longitude: number,
-  distance = 500,
   where?: Partial<Stop>,
+  distance = 500,
 ): Promise<StopWithDistance[]> => {
   const allStops = await stops(where);
 
   const stopsInVicinity = allStops
     .map((stop) =>
       Object.assign(stop, {
-        distance: Math.round(calcDistance(latitude, longitude, stop.stopLat, stop.stopLon)),
+        distance: calcDistance(latitude, longitude, stop.stopLat, stop.stopLon),
       }),
     )
     .filter((stop) => distance >= stop.distance);
