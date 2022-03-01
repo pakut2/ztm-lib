@@ -50,7 +50,5 @@ export const nearStops = async (
     )
     .filter((stop) => distance >= stop.distance);
 
-  return stopsInVicinity.sort((stop1, stop2) => {
-    return stop1.distance - stop2.distance;
-  });
+  return stopsInVicinity.sort((stop1, stop2) => stop1.distance - stop2.distance);
 };
