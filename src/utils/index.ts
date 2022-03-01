@@ -12,7 +12,7 @@ export const partialMatch = <T>(input: T[], obj: Partial<T>): T[] => {
   });
 };
 
-export const calcDist = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
+export const calcDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
   const R = 6371e3;
   const phi1 = (lat1 * Math.PI) / 180;
   const phi2 = (lat2 * Math.PI) / 180;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Stop, Vehicle } from './models';
-import { calcDist, partialMatch } from './utils';
+import { calcDistance, partialMatch } from './utils';
 
 /**
  * Fetch all stops
@@ -45,7 +45,7 @@ export const nearStops = async (
   const stopsInVicinity = allStops
     .map((stop) =>
       Object.assign(stop, {
-        distance: Math.round(calcDist(latitude, longitude, stop.stopLat, stop.stopLon)),
+        distance: Math.round(calcDistance(latitude, longitude, stop.stopLat, stop.stopLon)),
       }),
     )
     .filter((stop) => distance >= stop.distance);
