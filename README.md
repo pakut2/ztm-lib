@@ -50,8 +50,6 @@ Fetch all stops (filtered by properties in `where`)
 - `stopLat`: number - stop latitude
 - `stopLon`: number - stop longitude
 
-@returns Array of stops
-
 #### `nearStops(latitude: number, longitude: number, where?: Object, distance: number)`
 
 Fetch all stops in specified radius
@@ -89,8 +87,6 @@ Fetch all vehicles for the stop
 - `vehicleId`: number | null - internal id, set only when `status` equals "REALTIME"
 - `vehicleService`: string - vehicle service id
 
-@returns Array of vehicles
-
 #### `stopsVehicles(stopIds: number[], where? Object)`
 
 Fetch all vehicles for multiple stops
@@ -98,8 +94,6 @@ Fetch all vehicles for multiple stops
 @param `stopIds`
 
 @param `where` the same as for `stopVehicles`
-
-@returns An array of vehicles keyed by id of the corresponding stop
 
 #### `activeVehicles(where?: Object)`
 
@@ -121,8 +115,6 @@ Fetch all vehicles currently en route
 - `lat`: number - vehicle latitude
 - `lon`: number - vehicle longitude
 - `gpsQuality`: number - 0 - no GPS signal, 1-3 - GPS signal strength
-
-  @returns An array of vehicles
 
 ---
 
