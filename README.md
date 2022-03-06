@@ -37,7 +37,7 @@ Fetch all stops (filtered by properties in `where`)
 - `stopName`: string - stop name
 - `stopShortName`: string - unique id of the stop (in ZTM | ZKM)
 - `stopDesc`: string - ZTM stop name
-- `subName`: string - optional
+- `subName`: string - optional (the same as `stopCode` only for ZTM)
 - `date`: Date - date of the last data update
 - `zoneId`: number - town/community unique id
 - `zoneName`: string - town/community name
@@ -60,7 +60,7 @@ Fetch all stops in specified radius
 
 @param `longitude` Starting point longitude
 
-@param `where` (the same as above)
+@param `where`, the same as for `stops`
 
 @param `distance` Search radius (in meters). Default: 500m
 
@@ -99,7 +99,7 @@ Fetch all vehicles for multiple stops
 
 @param `stopIds`
 
-@param `where` the same as for `stopVehicles`
+@param `where`, the same as for `stopVehicles`
 
 ---
 
