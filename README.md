@@ -13,7 +13,7 @@ This library offers some utility functions and allows for easier interaction wit
 ## Installation
 
 ```shell
-    npm i ztm
+npm i ztm
 ```
 
 ## Usage
@@ -27,6 +27,7 @@ const stops = await ztm.stops({ stopId: 1337 });
 ### Methods
 
 `stops(where?: Object)`
+
 Fetch all stops (filtered by properties in `where`)
 
 @param `where`
@@ -37,7 +38,7 @@ Fetch all stops (filtered by properties in `where`)
 - `stopShortName`: string - unique id of the stop (in ZTM | ZKM)
 - `stopDesc`: string - ZTM stop name
 - `subName`: string - optional
-- `date`: Date - date of last stop data confirmation
+- `date`: Date - date of the last data update
 - `zoneId`: number - town/community unique id
 - `zoneName`: string - town/community name
 - `virtual`: number - flag used to determine whether stop is not intended for passengers (1 - yes, 0 - no)
@@ -57,8 +58,11 @@ Fetch all stops (filtered by properties in `where`)
 Fetch all stops in specified radius
 
 @param `latitude` Starting point latitude
+
 @param `longitude` Starting point longitude
+
 @param `where` (the same as above)
+
 @param `distance` Search radius (in meters). Default: 500m
 
 @returns Array of stops with distance from starting point. Sorted desc. based on distance
@@ -66,25 +70,27 @@ Fetch all stops in specified radius
 ---
 
 `stopVehicles(stopId: number, where? Object)`
+
 Fetch all vehicles for the stop
 
 @param `stopId`
+
 @param `where`
 
-- id: string - vehicle id ('T' + `tripId` + 'R' + `routeId`)
-- delayInSeconds: number | null - set only when `status` equals "REALTIME"
-- estimatedTime: Date - estimated departure time
-- headsign: string - trip destination
-- routeId: number
-- scheduledTripStartTime: Date
-- tripId: number
-- status: string - "REALTIME" | "SCHEDULED"
-- theoreticalTime: Date - scheduled departure time
-- timestamp: Date - timestamp used for calculating estimated values
-- trip: number - internal `tripId`
-- vehicleCode: number | null - set only when `status` equals "REALTIME"
-- vehicleId: number | null - internal id, set only when `status` equals "REALTIME"
-- vehicleService: string - vehicle service id
+- `id`: string - vehicle id ('T' + `tripId` + 'R' + `routeId`)
+- `delayInSeconds`: number | null - set only when `status` equals "REALTIME"
+- `estimatedTime`: Date - estimated departure time
+- `headsign`: string - trip destination
+- `routeId`: number
+- `scheduledTripStartTime`: Date
+- `tripId`: number
+- `status`: string - "REALTIME" | "SCHEDULED"
+- `theoreticalTime`: Date - scheduled departure time
+- `timestamp`: Date - timestamp used for calculating estimated values
+- `trip`: number - internal `tripId`
+- `vehicleCode`: number | null - set only when `status` equals "REALTIME"
+- `vehicleId`: number | null - internal id, set only when `status` equals "REALTIME"
+- `vehicleService`: string - vehicle service id
 
 @returns Array of vehicles
 
@@ -106,20 +112,20 @@ Fetch all vehicles currently en route
 
 @param `where`
 
-- generated: Date - timestamp of last `lat` and `lon` update (generally delay is around 20s)
-- routeShortName: string - vehicle number
-- tripId: number
-- headsign: string - vehicle destination
-- vehicleCode: string - unique vehicle code (visible on the vehicle's side)
-- vehicleService: string - vehicle service id
-- vehicleId: number
-- speed: number - vehicle velocity in km/h
-- direction: number - geographic direction in range of 0-315, with steps by 45 (0 - north, 315 - north-west)
-- delay: number - delay in seconds
-- scheduledTripStartTime: Date
-- lat: number - vehicle latitude
-- lon: number - vehicle longitude
-- gpsQuality: number - 0 - no GPS signal, 1-3 - GPS signal strength
+- `generated`: Date - timestamp of last `lat` and `lon` update (generally delay is around 20s)
+- `routeShortName`: string - vehicle number
+- `tripId`: number
+- `headsign`: string - vehicle destination
+- `vehicleCode`: string - unique vehicle code (visible on the vehicle's side)
+- `vehicleService`: string - vehicle service id
+- `vehicleId`: number
+- `speed`: number - vehicle velocity in km/h
+- `direction`: number - geographic direction in range of 0-315, with steps by 45 (0 - north, 315 - north-west)
+- `delay`: number - delay in seconds
+- `scheduledTripStartTime`: Date
+- `lat`: number - vehicle latitude
+- `lon`: number - vehicle longitude
+- `gpsQuality`: number - 0 - no GPS signal, 1-3 - GPS signal strength
 
   @returns An array of vehicles
 
