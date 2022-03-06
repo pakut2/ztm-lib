@@ -64,8 +64,6 @@ Fetch all stops in specified radius
 
 @param `distance` Search radius (in meters). Default: 500m
 
-@returns Array of stops with distance from starting point. Sorted desc. based on distance
-
 ---
 
 #### `stopVehicles(stopId: number, where? Object)`
