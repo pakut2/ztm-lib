@@ -6,7 +6,7 @@ export interface Stop {
   stopName: string;
   stopShortName: string;
   stopDesc: string;
-  subName: string;
+  subName?: string;
   date: Date;
   zoneId: number;
   zoneName: string;

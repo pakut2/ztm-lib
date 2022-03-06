@@ -10,7 +10,7 @@ import { partialMatch } from './utils';
  *
  * @returns Array of vehicles
  */
-export const vehiclesForStop = async (
+export const stopVehicles = async (
   stopId: number,
   where?: Partial<Vehicle>,
 ): Promise<Vehicle[]> => {
@@ -34,11 +34,11 @@ interface KeyedVehicles {
  *
  * @returns An array of vehicles keyed by id of the corresponding stop
  */
-export const vehiclesForStops = async (
+export const stopsVehicles = async (
   stopIds: number[],
   where?: Partial<Vehicle>,
 ): Promise<KeyedVehicles[]> => {
-  const vehicles = await Promise.all(stopIds.map((id) => vehiclesForStop(id, where)));
+  const vehicles = await Promise.all(stopIds.map((id) => stopVehicles(id, where)));
 
   return vehicles.map((vehicle, i) => {
     return { [stopIds[i]]: vehicle };

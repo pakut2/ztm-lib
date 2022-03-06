@@ -1,6 +1,6 @@
 import faker from '@faker-js/faker';
 import axios from 'axios';
-import { activeVehicles, vehiclesForStop, vehiclesForStops } from '../index';
+import { activeVehicles, stopVehicles, stopsVehicles } from '../index';
 import { mockActiveVehicles, mockVehicles } from './mocks';
 
 describe('vehicles', () => {
@@ -8,12 +8,12 @@ describe('vehicles', () => {
     jest.clearAllMocks();
   });
 
-  describe('vehiclesForStop', () => {
+  describe('stopVehicles', () => {
     it('should return all vehicles when no params are provided', async () => {
       const mockedVehicles = mockVehicles([{}, {}]);
       jest.spyOn(axios, 'get').mockResolvedValue({ data: { departures: mockedVehicles } });
 
-      const result = await vehiclesForStop(1462);
+      const result = await stopVehicles(1462);
 
       expect(result).toMatchObject(mockedVehicles);
       expect(result).toHaveLength(2);
@@ -28,14 +28,14 @@ describe('vehicles', () => {
       ]);
       jest.spyOn(axios, 'get').mockResolvedValue({ data: { departures: mockedVehicles } });
 
-      const result = await vehiclesForStop(1462, input);
+      const result = await stopVehicles(1462, input);
 
       expect(result).toMatchObject([mockedVehicles[0]]);
       expect(result).toHaveLength(1);
     });
   });
 
-  describe('vehiclesForStops', () => {
+  describe('stopVehicless', () => {
     it('should return all vehicles for all stops when no params are provided', async () => {
       const mockedVehicles = mockVehicles([{}, {}]);
       jest
@@ -43,7 +43,7 @@ describe('vehicles', () => {
         .mockImplementationOnce(() => Promise.resolve({ data: { departures: mockedVehicles } }))
         .mockImplementationOnce(() => Promise.resolve({ data: { departures: mockedVehicles } }));
 
-      const result = await vehiclesForStops([1461, 1462]);
+      const result = await stopsVehicles([1461, 1462]);
 
       expect(result).toMatchObject([{ '1461': mockedVehicles }, { '1462': mockedVehicles }]);
     });
@@ -60,7 +60,7 @@ describe('vehicles', () => {
         .mockImplementationOnce(() => Promise.resolve({ data: { departures: mockedVehicles } }))
         .mockImplementationOnce(() => Promise.resolve({ data: { departures: mockedVehicles } }));
 
-      const result = await vehiclesForStops([1461, 1462], input);
+      const result = await stopsVehicles([1461, 1462], input);
 
       expect(result).toMatchObject([
         { '1461': [mockedVehicles[0]] },
