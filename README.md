@@ -50,6 +50,8 @@ Fetch all stops (filtered by properties in `where`)
 - `stopLat`: number - stop latitude
 - `stopLon`: number - stop longitude
 
+---
+
 #### `nearStops(latitude: number, longitude: number, where?: Object, distance: number)`
 
 Fetch all stops in specified radius
@@ -63,6 +65,8 @@ Fetch all stops in specified radius
 @param `distance` Search radius (in meters). Default: 500m
 
 @returns Array of stops with distance from starting point. Sorted desc. based on distance
+
+---
 
 #### `stopVehicles(stopId: number, where? Object)`
 
@@ -87,6 +91,8 @@ Fetch all vehicles for the stop
 - `vehicleId`: number | null - internal id, set only when `status` equals "REALTIME"
 - `vehicleService`: string - vehicle service id
 
+---
+
 #### `stopsVehicles(stopIds: number[], where? Object)`
 
 Fetch all vehicles for multiple stops
@@ -94,6 +100,8 @@ Fetch all vehicles for multiple stops
 @param `stopIds`
 
 @param `where` the same as for `stopVehicles`
+
+---
 
 #### `activeVehicles(where?: Object)`
 
