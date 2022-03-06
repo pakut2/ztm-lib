@@ -26,7 +26,7 @@ const stops = await ztm.stops({ stopId: 1337 });
 
 ### Methods
 
-`stops(where?: Object)`
+#### `stops(where?: Object)`
 
 Fetch all stops (filtered by properties in `where`)
 
@@ -52,9 +52,8 @@ Fetch all stops (filtered by properties in `where`)
 
 @returns Array of stops
 
----
+#### `nearStops(latitude: number, longitude: number, where?: Object, distance: number)`
 
-`nearStops(latitude: number, longitude: number, where?: Object, distance: number)`
 Fetch all stops in specified radius
 
 @param `latitude` Starting point latitude
@@ -67,9 +66,7 @@ Fetch all stops in specified radius
 
 @returns Array of stops with distance from starting point. Sorted desc. based on distance
 
----
-
-`stopVehicles(stopId: number, where? Object)`
+#### `stopVehicles(stopId: number, where? Object)`
 
 Fetch all vehicles for the stop
 
@@ -94,19 +91,17 @@ Fetch all vehicles for the stop
 
 @returns Array of vehicles
 
----
+#### `stopsVehicles(stopIds: number[], where? Object)`
 
-`stopsVehicles(stopIds: number[], where? Object)`
 Fetch all vehicles for multiple stops
 
 @param `stopIds`
+
 @param `where` the same as for `stopVehicles`
 
 @returns An array of vehicles keyed by id of the corresponding stop
 
----
-
-`activeVehicles(where?: Object)`
+#### `activeVehicles(where?: Object)`
 
 Fetch all vehicles currently en route
 
