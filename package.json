@@ -1,7 +1,7 @@
 {
   "name": "ztm",
   "version": "0.0.7",
-  "description": "SDK for ZTM Gdańsk",
+  "description": "Library for ZTM Gdańsk",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
