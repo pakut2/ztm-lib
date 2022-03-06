@@ -1,7 +1,7 @@
 import faker from '@faker-js/faker';
 import axios from 'axios';
-import { vehiclesForStop, vehiclesForStops } from '../index';
-import { mockVehicles } from './mocks';
+import { activeVehicles, vehiclesForStop, vehiclesForStops } from '../index';
+import { mockActiveVehicles, mockVehicles } from './mocks';
 
 describe('vehicles', () => {
   afterEach(() => {
@@ -66,6 +66,33 @@ describe('vehicles', () => {
         { '1461': [mockedVehicles[0]] },
         { '1462': [mockedVehicles[0]] },
       ]);
+    });
+  });
+
+  describe('nearVehicles', () => {
+    it('should return all vehicles when no params are provided', async () => {
+      const mockedVehicles = mockActiveVehicles([{}, {}]);
+      jest.spyOn(axios, 'get').mockResolvedValue({ data: { vehicles: mockedVehicles } });
+
+      const result = await activeVehicles();
+
+      expect(result).toMatchObject(mockedVehicles);
+      expect(result).toHaveLength(2);
+    });
+
+    it('should return only the vehicles specified by params', async () => {
+      const input = { headsign: faker.random.word() };
+      const mockedVehicles = mockActiveVehicles([
+        { headsign: input.headsign },
+        { headsign: faker.random.word() },
+        {},
+      ]);
+      jest.spyOn(axios, 'get').mockResolvedValue({ data: { vehicles: mockedVehicles } });
+
+      const result = await activeVehicles(input);
+
+      expect(result).toMatchObject([mockedVehicles[0]]);
+      expect(result).toHaveLength(1);
     });
   });
 });

@@ -1,3 +1,5 @@
+import { Bool } from './types';
+
 export interface Stop {
   stopId: number;
   stopCode: string;
@@ -17,5 +19,3 @@ export interface Stop {
   stopLat: number;
   stopLon: number;
 }
-
-type Bool = 1 | 0;

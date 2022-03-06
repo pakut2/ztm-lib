@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Vehicle } from './models';
+import { ActiveVehicle, Vehicle } from './models';
 import { partialMatch } from './utils';
 
 /**
@@ -43,4 +43,20 @@ export const vehiclesForStops = async (
   return vehicles.map((vehicle, i) => {
     return { [stopIds[i]]: vehicle };
   });
+};
+
+/**
+ * Fetch all vehicles currently en route
+ *
+ * @param where Optional object containing properties to query by
+ *
+ * @returns An array of vehicles
+ */
+export const activeVehicles = async (where?: Partial<ActiveVehicle>): Promise<ActiveVehicle[]> => {
+  const { data } = await axios.get('https://ckan2.multimediagdansk.pl/gpsPositions?v=2');
+
+  const vehicles: ActiveVehicle[] = data.vehicles;
+  const matchedVehicles = where && Object.keys(where).length ? partialMatch(vehicles, where) : null;
+
+  return matchedVehicles ?? vehicles;
 };

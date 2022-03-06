@@ -1,3 +1,4 @@
+import { Status, Quality } from './types';
 export interface Vehicle {
   id: string;
   delayInSeconds: number | null;
@@ -15,4 +16,19 @@ export interface Vehicle {
   vehicleService: string;
 }
 
-type Status = 'REALTIME' | 'SCHEDULED';
+export interface ActiveVehicle {
+  generated: Date;
+  routeShortName: string;
+  tripId: number;
+  headsign: string;
+  vehicleCode: string;
+  vehicleService: string;
+  vehicleId: number;
+  speed: number;
+  direction: number;
+  delay: number;
+  scheduledTripStartTime: Date;
+  lat: number;
+  lon: number;
+  gpsQuality: Quality;
+}

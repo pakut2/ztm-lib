@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { Vehicle } from '../../models';
+import { ActiveVehicle, Vehicle } from '../../models';
 
 const mockVehicle = (input: Partial<Vehicle>): Partial<Vehicle> => {
   const defaultVehicle = {
@@ -13,4 +13,17 @@ const mockVehicle = (input: Partial<Vehicle>): Partial<Vehicle> => {
 
 export const mockVehicles = (input: Partial<Vehicle>[]): Partial<Vehicle>[] => {
   return input.map((vehicle) => mockVehicle(vehicle));
+};
+
+const mockActiveVehicle = (input: Partial<ActiveVehicle>): Partial<ActiveVehicle> => {
+  const defaultActiveVehicle = {
+    routeShortName: faker.random.word(),
+    headsign: faker.random.word(),
+  };
+
+  return Object.assign(defaultActiveVehicle, input);
+};
+
+export const mockActiveVehicles = (input: Partial<ActiveVehicle>[]): Partial<ActiveVehicle>[] => {
+  return input.map((vehicle) => mockActiveVehicle(vehicle));
 };
