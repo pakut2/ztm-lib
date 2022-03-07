@@ -22,8 +22,8 @@
     "url": "git+https://github.com/pakut2/ztm-sdk.git"
   },
   "keywords": [
+    "library",
     "ztm",
-    "sdk",
     "gdansk"
   ],
   "author": "pakut2",
